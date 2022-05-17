@@ -3,3 +3,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    
+}
+
+.container{
+    width: 95%;
+    height: auto;
+    margin:auto;
+    border:1px solid magenta;
+}
