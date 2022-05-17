@@ -140,20 +140,26 @@ const colorVegetable = colorGenerator();
 const colorUser = colorGenerator();
 const colorAnimal = colorGenerator();
 
+for (let i = 0; i < icons.length; i++) {
+	if (icons[i].type === "user") {
+		icons[i].color = colorUser;
+	} else if (icons[i].type === "animal") {
+		icons[i].color = colorAnimal;
+	} else {
+		icons[i].color = colorVegetable;
+
+	}
+}
+
+
 function addIcons(icons) {
 	for (let i = 0; i < icons.length; i++) {
 		// <i class="fa-solid fa-dog"></i>
 		const icon = document.createElement("i");
 		icon.classList.add(`${icons[i].prefix}solid`, `${icons[i].prefix + icons[i].name}`);
-		
-		if (icons[i].type === "user") {
-			icon.style.color = colorUser;
-		} else if (icons[i].type === "animal") {
-			icon.style.color = colorAnimal;
-		} else {
-			icon.style.color = colorVegetable;
 
-		}
+		icon.style.color = icons[i].color;
+
 		container.innerHTML += `
 		<div class="box">
 			<div>${icon.outerHTML}</div>
