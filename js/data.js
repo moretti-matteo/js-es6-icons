@@ -124,6 +124,22 @@ const icons = [
 // 1- modificare la struttura dati fornita e valorizzare la proprietà "color" in modo dinamico: generare in modo casuale un codice colore, sapendo che la notazione esadecimale è formata dal simbolo "#" seguito da 6 caratteri alfanumerici compresi tra 0 e 9 e A e F.
 // 2- popolare le options della select della milestone 3 dinamicamente.
 
+
+//BONUS 2
+const selectOptions = ["All", "Animal", "Vegetable", "User"];
+const select = document.querySelector("#menu");
+
+function selectFill(options) {
+	for (let i = 0; i < options.length; i++) {
+		const option = document.createElement("option");
+		option.innerHTML = options[i];
+		option.value = options[i].toLowerCase();
+		select.append(option);
+	}
+}
+selectFill(selectOptions);
+
+//BONUS 1
 function colorGenerator() {
 	let color = "#";
 	const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F',];
@@ -152,6 +168,9 @@ for (let i = 0; i < icons.length; i++) {
 }
 
 
+
+
+
 function addIcons(icons) {
 	for (let i = 0; i < icons.length; i++) {
 		// <i class="fa-solid fa-dog"></i>
@@ -171,7 +190,6 @@ function addIcons(icons) {
 }
 
 const container = document.querySelector(".container");
-const select = document.querySelector("#menu");
 
 select.addEventListener("change", function () {
 	container.innerHTML = "";
