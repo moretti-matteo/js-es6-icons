@@ -124,19 +124,43 @@ const icons = [
 // 1- modificare la struttura dati fornita e valorizzare la proprietà "color" in modo dinamico: generare in modo casuale un codice colore, sapendo che la notazione esadecimale è formata dal simbolo "#" seguito da 6 caratteri alfanumerici compresi tra 0 e 9 e A e F.
 // 2- popolare le options della select della milestone 3 dinamicamente.
 
-function addIcons(icons){
+function colorGenerator() {
+	let color = "#";
+	const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F',];
+
+	for (let i = 0; i < 6; i++) {
+		const num = Math.floor(Math.random() * (hex.length));
+		color += hex[num];
+	}
+	console.log(color);
+	return color;
+}
+
+const colorVegetable = colorGenerator();
+const colorUser = colorGenerator();
+const colorAnimal = colorGenerator();
+
+function addIcons(icons) {
 	for (let i = 0; i < icons.length; i++) {
 		// <i class="fa-solid fa-dog"></i>
 		const icon = document.createElement("i");
 		icon.classList.add(`${icons[i].prefix}solid`, `${icons[i].prefix + icons[i].name}`);
-		icon.style.color = icons[i].color;
+		
+		if (icons[i].type === "user") {
+			icon.style.color = colorUser;
+		} else if (icons[i].type === "animal") {
+			icon.style.color = colorAnimal;
+		} else {
+			icon.style.color = colorVegetable;
+
+		}
 		container.innerHTML += `
 		<div class="box">
 			<div>${icon.outerHTML}</div>
 			<div>${icons[i].name}</div>
 		</div>
 		`;
-	
+
 	}
 }
 
@@ -157,7 +181,7 @@ select.addEventListener("change", function () {
 		case "user":
 			filteredArray = icons.filter(elem => elem.type === "user");
 			break;
-		
+
 	}
 
 
