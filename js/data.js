@@ -124,10 +124,15 @@ const container = document.querySelector(".container");
 
 for (let i = 0; i < animals.length; i++) {
 	// <i class="fa-solid fa-dog"></i>
+	const icon = document.createElement("i");
+	icon.classList.add(`${animals[i].prefix}solid`, `${animals[i].prefix + animals[i].name}`);
+	icon.style.color = animals[i].color;
+
 	container.innerHTML += `
 	<div class="box">
-		<div><i class="${animals[i].prefix}solid ${animals[i].prefix + animals[i].name}"></i></div>
+		<div>${icon.outerHTML}</div>
 		<div>${animals[i].name}</div>
 	</div>
-	`
+	`;
+
 }
