@@ -1,4 +1,4 @@
-const animals = [
+const icons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -120,19 +120,44 @@ const animals = [
 // Milestone 3
 // Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
 
-const container = document.querySelector(".container");
-
-for (let i = 0; i < animals.length; i++) {
-	// <i class="fa-solid fa-dog"></i>
-	const icon = document.createElement("i");
-	icon.classList.add(`${animals[i].prefix}solid`, `${animals[i].prefix + animals[i].name}`);
-	icon.style.color = animals[i].color;
-
-	container.innerHTML += `
-	<div class="box">
-		<div>${icon.outerHTML}</div>
-		<div>${animals[i].name}</div>
-	</div>
-	`;
-
+function addIcons(icons){
+	for (let i = 0; i < icons.length; i++) {
+		// <i class="fa-solid fa-dog"></i>
+		const icon = document.createElement("i");
+		icon.classList.add(`${icons[i].prefix}solid`, `${icons[i].prefix + icons[i].name}`);
+		icon.style.color = icons[i].color;
+		container.innerHTML += `
+		<div class="box">
+			<div>${icon.outerHTML}</div>
+			<div>${icons[i].name}</div>
+		</div>
+		`;
+	
+	}
 }
+
+const container = document.querySelector(".container");
+const select = document.querySelector("#menu");
+
+select.addEventListener("change", function () {
+	container.innerHTML = "";
+	let filteredArray = [];
+	switch (select.value) {
+
+		case "animal":
+			filteredArray = icons.filter(elem => elem.type === "animal");
+			break;
+		case "vegetable":
+			filteredArray = icons.filter(elem => elem.type === "vegetable");
+			break;
+		case "user":
+			filteredArray = icons.filter(elem => elem.type === "user");
+			break;
+	}
+
+
+	addIcons(filteredArray.length > 0 ? filteredArray : icons);
+});
+
+addIcons(icons);
+
